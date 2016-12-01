@@ -4,100 +4,11 @@ import net.minecraft.block.Block;
 
 public class AppalachiaBlocks {
 
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // Logs
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    public static Block log_autumn_grey;
+    public static Block vine_poison_ivy_01;
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // Planks
+    // DYNAMICALLY-GENERATED CODE - PLEASE DO NOT MODIFY BELOW THIS LINE
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    public static Block planks_autumn_grey;
-
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // Slabs
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    public static Block slab_autumn_grey;
-
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // Stairs
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    public static Block stairs_autumn_grey;
-
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // Fences
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    public static Block fence_autumn_grey;
-
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // Fence Gates
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    public static Block fence_gate_autumn_grey;
-
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // Leaves
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    public static Block leaves_autumn_red;
-    public static Block leaves_autumn_orange;
-    public static Block leaves_autumn_yellow;
-
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // Fallen Leaves
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    public static Block leaves_oak_fallen;
-    public static Block leaves_autumn_red_fallen;
-    public static Block leaves_autumn_orange_fallen;
-    public static Block leaves_autumn_yellow_fallen;
-
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // Saplings
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    public static Block sapling_quercus_robur;
-
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-    public static Block fence_gate_blueridge_01;
-    public static Block fence_gate_blueridge_02;
-    public static Block fence_gate_blueridge_03;
-
-
-    public static Block fence_blueridge_01;
-    public static Block fence_blueridge_02;
-    public static Block fence_blueridge_03;
-
-
-    public static Block log_blueridge_01;
-    public static Block log_blueridge_02;
-    public static Block log_blueridge_03;
-
-
-    public static Block planks_blueridge_01;
-    public static Block planks_blueridge_02;
-    public static Block planks_blueridge_03;
-
-
-    public static Block slab_blueridge_01;
-    public static Block slab_blueridge_02;
-    public static Block slab_blueridge_03;
-
-
-    public static Block stairs_blueridge_01;
-    public static Block stairs_blueridge_02;
-    public static Block stairs_blueridge_03;
-
-
-
 
     public static Block fence_gate_american_beech_01;
     public static Block fence_gate_american_chestnut_01;
@@ -171,6 +82,78 @@ public class AppalachiaBlocks {
     public static Block fence_yellow_birch_01;
 
 
+    public static Block leaves_american_beech_01;
+    public static Block leaves_american_chestnut_01;
+    public static Block leaves_american_elm_01;
+    public static Block leaves_ash_01;
+    public static Block leaves_bitternut_hickory_01;
+    public static Block leaves_black_cherry_01;
+    public static Block leaves_black_gum_01;
+    public static Block leaves_black_locust_01;
+    public static Block leaves_black_oak_01;
+    public static Block leaves_black_walnut_01;
+    public static Block leaves_blue_beech_01;
+    public static Block leaves_box_elder_01;
+    public static Block leaves_buckeye_01;
+    public static Block leaves_cedar_01;
+    public static Block leaves_dogwood_01;
+    public static Block leaves_hackberry_01;
+    public static Block leaves_honey_locust_01;
+    public static Block leaves_hop_hornbeam_01;
+    public static Block leaves_persimmon_01;
+    public static Block leaves_pignut_hickory_01;
+    public static Block leaves_red_elm_01;
+    public static Block leaves_red_maple_01;
+    public static Block leaves_red_oak_01;
+    public static Block leaves_river_birch_01;
+    public static Block leaves_sassafras_01;
+    public static Block leaves_shagbark_hickory_01;
+    public static Block leaves_shortleaf_pine_01;
+    public static Block leaves_sugar_maple_01;
+    public static Block leaves_sycamore_01;
+    public static Block leaves_tulip_poplar_01;
+    public static Block leaves_white_oak_01;
+    public static Block leaves_white_pine_01;
+    public static Block leaves_white_walnut_01;
+    public static Block leaves_yellow_birch_01;
+
+
+    public static Block leaves_american_beech_01_fallen;
+    public static Block leaves_american_chestnut_01_fallen;
+    public static Block leaves_american_elm_01_fallen;
+    public static Block leaves_ash_01_fallen;
+    public static Block leaves_bitternut_hickory_01_fallen;
+    public static Block leaves_black_cherry_01_fallen;
+    public static Block leaves_black_gum_01_fallen;
+    public static Block leaves_black_locust_01_fallen;
+    public static Block leaves_black_oak_01_fallen;
+    public static Block leaves_black_walnut_01_fallen;
+    public static Block leaves_blue_beech_01_fallen;
+    public static Block leaves_box_elder_01_fallen;
+    public static Block leaves_buckeye_01_fallen;
+    public static Block leaves_cedar_01_fallen;
+    public static Block leaves_dogwood_01_fallen;
+    public static Block leaves_hackberry_01_fallen;
+    public static Block leaves_honey_locust_01_fallen;
+    public static Block leaves_hop_hornbeam_01_fallen;
+    public static Block leaves_persimmon_01_fallen;
+    public static Block leaves_pignut_hickory_01_fallen;
+    public static Block leaves_red_elm_01_fallen;
+    public static Block leaves_red_maple_01_fallen;
+    public static Block leaves_red_oak_01_fallen;
+    public static Block leaves_river_birch_01_fallen;
+    public static Block leaves_sassafras_01_fallen;
+    public static Block leaves_shagbark_hickory_01_fallen;
+    public static Block leaves_shortleaf_pine_01_fallen;
+    public static Block leaves_sugar_maple_01_fallen;
+    public static Block leaves_sycamore_01_fallen;
+    public static Block leaves_tulip_poplar_01_fallen;
+    public static Block leaves_white_oak_01_fallen;
+    public static Block leaves_white_pine_01_fallen;
+    public static Block leaves_white_walnut_01_fallen;
+    public static Block leaves_yellow_birch_01_fallen;
+
+
     public static Block log_american_beech_01;
     public static Block log_american_chestnut_01;
     public static Block log_american_elm_01;
@@ -205,42 +188,6 @@ public class AppalachiaBlocks {
     public static Block log_white_pine_01;
     public static Block log_white_walnut_01;
     public static Block log_yellow_birch_01;
-
-
-    public static Block log_thin_american_beech_01;
-    public static Block log_thin_american_chestnut_01;
-    public static Block log_thin_american_elm_01;
-    public static Block log_thin_ash_01;
-    public static Block log_thin_bitternut_hickory_01;
-    public static Block log_thin_black_cherry_01;
-    public static Block log_thin_black_gum_01;
-    public static Block log_thin_black_locust_01;
-    public static Block log_thin_black_oak_01;
-    public static Block log_thin_black_walnut_01;
-    public static Block log_thin_blue_beech_01;
-    public static Block log_thin_box_elder_01;
-    public static Block log_thin_buckeye_01;
-    public static Block log_thin_cedar_01;
-    public static Block log_thin_dogwood_01;
-    public static Block log_thin_hackberry_01;
-    public static Block log_thin_honey_locust_01;
-    public static Block log_thin_hop_hornbeam_01;
-    public static Block log_thin_persimmon_01;
-    public static Block log_thin_pignut_hickory_01;
-    public static Block log_thin_red_elm_01;
-    public static Block log_thin_red_maple_01;
-    public static Block log_thin_red_oak_01;
-    public static Block log_thin_river_birch_01;
-    public static Block log_thin_sassafras_01;
-    public static Block log_thin_shagbark_hickory_01;
-    public static Block log_thin_shortleaf_pine_01;
-    public static Block log_thin_sugar_maple_01;
-    public static Block log_thin_sycamore_01;
-    public static Block log_thin_tulip_poplar_01;
-    public static Block log_thin_white_oak_01;
-    public static Block log_thin_white_pine_01;
-    public static Block log_thin_white_walnut_01;
-    public static Block log_thin_yellow_birch_01;
 
 
     public static Block planks_american_beech_01;
@@ -351,5 +298,39 @@ public class AppalachiaBlocks {
     public static Block stairs_yellow_birch_01;
 
 
+    public static Block sapling_american_beech_01;
+    public static Block sapling_american_chestnut_01;
+    public static Block sapling_american_elm_01;
+    public static Block sapling_ash_01;
+    public static Block sapling_bitternut_hickory_01;
+    public static Block sapling_black_cherry_01;
+    public static Block sapling_black_gum_01;
+    public static Block sapling_black_locust_01;
+    public static Block sapling_black_oak_01;
+    public static Block sapling_black_walnut_01;
+    public static Block sapling_blue_beech_01;
+    public static Block sapling_box_elder_01;
+    public static Block sapling_buckeye_01;
+    public static Block sapling_cedar_01;
+    public static Block sapling_dogwood_01;
+    public static Block sapling_hackberry_01;
+    public static Block sapling_honey_locust_01;
+    public static Block sapling_hop_hornbeam_01;
+    public static Block sapling_persimmon_01;
+    public static Block sapling_pignut_hickory_01;
+    public static Block sapling_red_elm_01;
+    public static Block sapling_red_maple_01;
+    public static Block sapling_red_oak_01;
+    public static Block sapling_river_birch_01;
+    public static Block sapling_sassafras_01;
+    public static Block sapling_shagbark_hickory_01;
+    public static Block sapling_shortleaf_pine_01;
+    public static Block sapling_sugar_maple_01;
+    public static Block sapling_sycamore_01;
+    public static Block sapling_tulip_poplar_01;
+    public static Block sapling_white_oak_01;
+    public static Block sapling_white_pine_01;
+    public static Block sapling_white_walnut_01;
+    public static Block sapling_yellow_birch_01;
 
 }
