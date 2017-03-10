@@ -8,13 +8,15 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 import appalachia.rtg.world.gen.feature.tree.rtg.AppalachiaTree;
 
-import rtg.util.OpenSimplexNoise;
+import rtg.api.util.noise.OpenSimplexNoise;
 
-public class AppalachiaBiome extends Biome implements IAppalachiaBiome {
+
+public abstract class AppalachiaBiome extends Biome implements IAppalachiaBiome {
 
     public ArrayList<AppalachiaTree> appalachiaTrees;
     public OpenSimplexNoise simplex = new OpenSimplexNoise(4444);
@@ -48,6 +50,11 @@ public class AppalachiaBiome extends Biome implements IAppalachiaBiome {
     public void decorate(World world, Random rand, BlockPos pos) {
 
         super.decorate(world, rand, pos);
+    }
+
+    @Override
+    public BiomeDecorator createBiomeDecorator() {
+        return new AppalachiaBiomeDecorator();
     }
 
     @Override

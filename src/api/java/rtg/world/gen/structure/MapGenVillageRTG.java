@@ -1,11 +1,11 @@
 package rtg.world.gen.structure;
 
-import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
+import javax.annotation.Nonnull;
 
 import net.minecraft.init.Biomes;
 import net.minecraft.nbt.NBTTagCompound;
@@ -17,8 +17,7 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
 
-import rtg.api.biome.BiomeConfig;
-import rtg.config.rtg.ConfigRTG;
+import rtg.api.RTGAPI;
 import rtg.util.Logger;
 import rtg.world.WorldTypeRTG;
 import rtg.world.biome.BiomeProviderRTG;
@@ -33,9 +32,9 @@ public class MapGenVillageRTG extends MapGenVillage
     private final int minTownSeparation;
 
     public MapGenVillageRTG() {
-        this.size = ConfigRTG.villageSize; // Vanilla = 0
-        this.distance = ConfigRTG.maxDistanceVillages; // Vanille = 32
-        this.minTownSeparation = ConfigRTG.minDistanceVillages; // Vanilla = 8
+        this.size = RTGAPI.config().VILLAGE_SIZE.get(); // Vanilla = 0
+        this.distance = RTGAPI.config().MAX_DISTANCE_VILLAGES.get(); // Vanille = 32
+        this.minTownSeparation = RTGAPI.config().MIN_DISTANCE_VILLAGES.get(); // Vanilla = 8
     }
 
     public MapGenVillageRTG(Map<String, String> map) {
@@ -75,7 +74,7 @@ public class MapGenVillageRTG extends MapGenVillage
 
         if (i == k && j == l) {
 
-            boolean booRTGWorld = worldObj.getWorldInfo().getTerrainType() instanceof WorldTypeRTG;
+            boolean booRTGWorld = worldObj.getWorldType() instanceof WorldTypeRTG;
             boolean booRTGChunkManager = worldObj.getBiomeProvider() instanceof BiomeProviderRTG;
 
             int worldX = i * 16 + 8;
@@ -87,7 +86,7 @@ public class MapGenVillageRTG extends MapGenVillage
                 //Why are we flipping XZ here? No idea, but it works. - Pink
                 RealisticBiomeBase realisticBiome = cmr.getBiomeDataAt(worldX, worldZ);
 
-                if (realisticBiome.config.getPropertyById(BiomeConfig.allowVillagesId).valueBoolean) {
+                if (realisticBiome.getConfig().ALLOW_VILLAGES.get()) {
                     canSpawnVillage = true;
                     Logger.debug("Potential village in %s at %d %d", realisticBiome.baseBiome.getBiomeName(), worldX, worldZ);
                 }

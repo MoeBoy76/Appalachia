@@ -1,20 +1,17 @@
 package rtg.world.gen.surface;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockStainedGlass;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.EnumDyeColor;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
-import rtg.api.biome.BiomeConfig;
-import rtg.util.BlockUtil;
-import rtg.util.CellNoise;
-import rtg.util.CliffCalculator;
-import rtg.util.OpenSimplexNoise;
 
-import java.util.Random;
+import rtg.api.world.RTGWorld;
+import rtg.api.config.BiomeConfig;
+import rtg.api.util.BlockUtil;
+import rtg.api.util.CliffCalculator;
 
 public class SurfaceGrassCanyon extends SurfaceBase {
 
@@ -27,8 +24,9 @@ public class SurfaceGrassCanyon extends SurfaceBase {
     }
 
     @Override
-    public void paintTerrain(ChunkPrimer primer, int i, int j, int x, int z, int depth, World world, Random rand, OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, Biome[] base) {
+    public void paintTerrain(ChunkPrimer primer, int i, int j, int x, int z, int depth, RTGWorld rtgWorld, float[] noise, float river, Biome[] base) {
 
+        Random rand = rtgWorld.rand;
         float c = CliffCalculator.calc(x, z, noise);
         boolean cliff = c > 1.3f ? true : false;
 

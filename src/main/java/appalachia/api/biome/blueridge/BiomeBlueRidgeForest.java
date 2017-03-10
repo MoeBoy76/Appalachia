@@ -1,12 +1,10 @@
 package appalachia.api.biome.blueridge;
 
-import net.minecraft.world.biome.BiomeDecorator;
-
 import net.minecraftforge.common.BiomeDictionary;
 
 import appalachia.api.AppalachiaBiomeTypes;
 import appalachia.api.biome.IAppalachiaBiome;
-import appalachia.api.biome.decorator.blueridge.DecoratorBlueRidgeForest;
+import appalachia.entity.passive.EntityFireFly;
 
 public class BiomeBlueRidgeForest extends BiomeBlueRidge implements IAppalachiaBiome {
 
@@ -14,15 +12,12 @@ public class BiomeBlueRidgeForest extends BiomeBlueRidge implements IAppalachiaB
 
         super(props);
 
+        this.spawnableCaveCreatureList.add(new SpawnListEntry(EntityFireFly.class, 10, 4, 8));
+
         biomeTypes = new BiomeDictionary.Type[]{
             BiomeDictionary.Type.FOREST,
             BiomeDictionary.Type.DENSE,
             AppalachiaBiomeTypes.BLUERIDGE
         };
-    }
-
-    @Override
-    public BiomeDecorator createBiomeDecorator() {
-        return new DecoratorBlueRidgeForest();
     }
 }

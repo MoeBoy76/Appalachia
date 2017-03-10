@@ -11,8 +11,8 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenRavine;
 
-import rtg.api.biome.BiomeConfig;
-import rtg.config.rtg.ConfigRTG;
+import rtg.api.RTGAPI;
+import rtg.api.config.RTGConfig;
 import rtg.world.biome.realistic.RealisticBiomeBase;
 
 public class MapGenRavineRTG extends MapGenRavine
@@ -21,6 +21,7 @@ public class MapGenRavineRTG extends MapGenRavine
     protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
     private final float[] rs = new float[1024];
 
+    private RTGConfig rtgConfig = RTGAPI.config();
     private boolean enableRavines;
     private int ravineFrequency;
 
@@ -196,12 +197,12 @@ public class MapGenRavineRTG extends MapGenRavine
     protected void recursiveGenerate(World worldIn, int chunkX, int chunkZ, int p_180701_4_, int p_180701_5_, ChunkPrimer chunkPrimerIn)
     {
         // Return early if ravines are disabled.
-        if (!ConfigRTG.enableRavines) {
+        if (!rtgConfig.ENABLE_RAVINES.get()) {
             return;
         }
 
         // Use the global settings by default.
-        ravineFrequency = ConfigRTG.ravineFrequency;
+        ravineFrequency = rtgConfig.RAVINE_FREQUENCY.get();
 
         // If the user has set biome-specific settings, let's use those instead.
         Biome biome = worldIn.getBiome(new BlockPos(this.rand.nextInt(16) + chunkX * 16, 0, this.rand.nextInt(16) + chunkZ * 16));
@@ -211,7 +212,7 @@ public class MapGenRavineRTG extends MapGenRavine
             RealisticBiomeBase realisticBiome = RealisticBiomeBase.getBiome(Biome.getIdForBiome(biome));
 
             if (realisticBiome != null) {
-                ravineFrequency = (realisticBiome.config._int(BiomeConfig.ravineFrequencyId) > -1) ? realisticBiome.config._int(BiomeConfig.ravineFrequencyId) : ravineFrequency;
+                ravineFrequency = (realisticBiome.getConfig().RAVINE_FREQUENCY.get() > -1) ? realisticBiome.getConfig().RAVINE_FREQUENCY.get() : ravineFrequency;
             }
         }
 

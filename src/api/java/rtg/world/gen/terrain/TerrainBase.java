@@ -1,10 +1,12 @@
 package rtg.world.gen.terrain;
 
-import rtg.config.rtg.ConfigRTG;
-import rtg.util.CellNoise;
-import rtg.util.OpenSimplexNoise;
+import rtg.api.RTGAPI;
+import rtg.api.config.RTGConfig;
+import rtg.api.util.noise.CellNoise;
+import rtg.api.util.noise.OpenSimplexNoise;
+import rtg.api.world.RTGWorld;
 
-public class TerrainBase {
+public abstract class TerrainBase {
 
     public static final float minimumOceanFloor = 30.01f; // The lowest Y coord an ocean floor is allowed to be.
     public static final float minimumDuneHeight = 21f; // The strength factor to which the dune height config option is added.
@@ -15,6 +17,8 @@ public class TerrainBase {
     protected final float rollingHillsMaxHeight;
     protected float base; // added as most terrains have this;
     protected float groundNoise;
+    protected RTGConfig rtgConfig = RTGAPI.config();
+    protected static RTGConfig configRTG = RTGAPI.config();
 
     public TerrainBase() {
 
@@ -226,7 +230,7 @@ public class TerrainBase {
 
     public static float terrainDunes(int x, int y, OpenSimplexNoise simplex, CellNoise cell, float river) {
 
-        float st = (simplex.noise2(x / 160f, y / 160f) + 0.38f) * (minimumDuneHeight + (float) ConfigRTG.duneHeight);
+        float st = (simplex.noise2(x / 160f, y / 160f) + 0.38f) * (minimumDuneHeight + (float) configRTG.DUNE_HEIGHT.get());
         st = st < 0.2f ? 0.2f : st;
 
         float h = simplex.noise2(x / 60f, y / 60f) * st * 2f;
@@ -658,7 +662,7 @@ public class TerrainBase {
 
     public static float terrainPolar(int x, int y, OpenSimplexNoise simplex, float river) {
 
-        float st = (simplex.noise2(x / 160f, y / 160f) + 0.38f) * (minimumDuneHeight + (float) ConfigRTG.duneHeight) * river;
+        float st = (simplex.noise2(x / 160f, y / 160f) + 0.38f) * (minimumDuneHeight + (float) configRTG.DUNE_HEIGHT.get()) * river;
         st = st < 0.2f ? 0.2f : st;
 
         float h = simplex.noise2(x / 60f, y / 60f) * st * 2f;
@@ -766,8 +770,5 @@ public class TerrainBase {
         return baseHeight + h * border;
     }
 
-    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river) {
-
-        return 70f;
-    }
+    public abstract float generateNoise(RTGWorld rtgWorld, int x, int y, float border, float river);
 }

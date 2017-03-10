@@ -11,6 +11,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -25,8 +26,10 @@ import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import appalachia.api.AppalachiaAPI;
 import appalachia.api.block.IAppalachiaBlockLeavesFallen;
 import appalachia.api.util.Simplex;
+import appalachia.block.BlockManager;
 import appalachia.block.IAppalachiaBlock;
 import appalachia.gui.AppalachiaTabs;
 import com.google.common.collect.Lists;
@@ -65,6 +68,20 @@ public class AppalachiaBlockLeavesFallen extends Block implements IAppalachiaBlo
     public String registryName() {
 
         return String.join("_", this.slug.split("\\."));
+    }
+
+    @Nullable
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+    {
+        return NULL_AABB;
+    }
+
+    @Override
+    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+    {
+        entityIn.motionX *= 0.925D;
+        entityIn.motionY *= 0.925D;
+        entityIn.motionZ *= 0.925D;
     }
 
     @Override
@@ -193,7 +210,8 @@ public class AppalachiaBlockLeavesFallen extends Block implements IAppalachiaBlo
     @Override
     public boolean isPassable(IBlockAccess world, BlockPos pos) {
 
-        return world.getBlockState(pos).getValue(LAYERS).intValue() < 5;
+        //return world.getBlockState(pos).getValue(LAYERS).intValue() < 5;
+        return true;
     }
 
     @Override
@@ -228,6 +246,7 @@ public class AppalachiaBlockLeavesFallen extends Block implements IAppalachiaBlo
         return true;
     }
 
+    @SideOnly(Side.CLIENT)
     public static class ColourHandler implements IBlockColor {
 
         private static final int leafColours[] = {
@@ -242,17 +261,26 @@ public class AppalachiaBlockLeavesFallen extends Block implements IAppalachiaBlo
 
         }
 
+        @Override
         public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
         {
             //return BiomeColorHelper.getFoliageColorAtPos(worldIn, pos);
 
-            if (pos == null) {
+            if (worldIn != null && pos != null) {
+
+                int noise = (int) (simplex.noise(pos.getX()/5, pos.getZ()/5)*9+9);
+
+                return leafColours[noise];
+            }
+            else {
+
                 return 16750848;
             }
-
-            int noise = (int) (simplex.noise(pos.getX()/5, pos.getZ()/5)*9+9);
-
-            return leafColours[noise];
         }
+    }
+
+    public static Block getRandomFallenLeaves() {
+
+        return (AppalachiaBlockLeavesFallen)BlockManager.appalachiaLeavesFallen.get(AppalachiaAPI.rand.nextInt(BlockManager.appalachiaLeavesFallen.size()));
     }
 }
