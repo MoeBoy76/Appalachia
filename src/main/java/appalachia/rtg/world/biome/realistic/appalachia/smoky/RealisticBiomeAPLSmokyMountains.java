@@ -5,21 +5,28 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 
 import appalachia.api.AppalachiaBiomes;
-import appalachia.rtg.world.biome.deco.collection.DecoCollectionSmokyForest;
+import appalachia.rtg.world.biome.deco.collection.DecoCollectionSmokyMountains;
 import appalachia.rtg.world.biome.realistic.appalachia.RealisticBiomeAPLBase;
+import appalachia.rtg.world.gen.terrain.SpikeEverywhereEffect;
+import appalachia.rtg.world.gen.terrain.TerrainRidgedRegion;
 
-import rtg.config.BiomeConfig;
-import rtg.util.BlockUtil;
-import rtg.util.CellNoise;
-import rtg.util.CliffCalculator;
-import rtg.util.OpenSimplexNoise;
-import rtg.world.gen.surface.SurfaceBase;
-import rtg.world.gen.terrain.*;
+import rtg.api.config.BiomeConfig;
+import rtg.api.util.BlockUtil;
+import rtg.api.util.CliffCalculator;
+import rtg.api.util.noise.OpenSimplexNoise;
+import rtg.api.world.RTGWorld;
+import rtg.api.world.surface.SurfaceBase;
+import rtg.api.world.terrain.FunctionalTerrainBase;
+import rtg.api.world.terrain.TerrainBase;
+import rtg.api.world.terrain.heighteffect.HeightVariation;
+import rtg.api.world.terrain.heighteffect.JitterEffect;
+import rtg.api.world.terrain.heighteffect.MountainsWithPassesEffect;
+import rtg.api.world.terrain.heighteffect.RaiseEffect;
+
 
 public class RealisticBiomeAPLSmokyMountains extends RealisticBiomeAPLBase {
 
@@ -29,8 +36,6 @@ public class RealisticBiomeAPLSmokyMountains extends RealisticBiomeAPLBase {
     public RealisticBiomeAPLSmokyMountains() {
 
         super(biome, river);
-
-        this.noWaterFeatures = true;
     }
 
     @Override
@@ -43,9 +48,25 @@ public class RealisticBiomeAPLSmokyMountains extends RealisticBiomeAPLBase {
     }
 
     @Override
+    public boolean noWaterFeatures() {
+        return true;
+    }
+
+    @Override
     public TerrainBase initTerrain() {
 
-        return new TerrainAPLSmokyMountains(120f, 100f);
+
+        TerrainRidgedRegion.Parameters parameters = new TerrainRidgedRegion.Parameters();
+        SpikeEverywhereEffect mountains= new SpikeEverywhereEffect();
+        mountains.spiked = new RaiseEffect(110);
+        mountains.octave = 2;
+        mountains.power = 0.9f;
+        mountains.wavelength = 200;
+        mountains.minimumSimplex = 0.3f;
+        parameters.ridgeAmplitude = mountains;
+        parameters.ridgeBase = 30;
+        return new TerrainRidgedRegion(parameters);
+        //return new TerrainAPLSmokyMountains(120f, 100f);
     }
 
     @Override
@@ -71,13 +92,15 @@ public class RealisticBiomeAPLSmokyMountains extends RealisticBiomeAPLBase {
         }
 
         @Override
-        public void paintTerrain(ChunkPrimer primer, int i, int j, int x, int y, int depth, World world, Random rand, OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, Biome[] base) {
+        public void paintTerrain(ChunkPrimer primer, int i, int j, int x, int z, int depth, RTGWorld rtgWorld, float[] noise, float river, Biome[] base) {
 
-            float c = CliffCalculator.calc(x, y, noise);
+            Random rand = rtgWorld.rand;
+            OpenSimplexNoise simplex = rtgWorld.simplex;
+            float c = CliffCalculator.calc(x, z, noise);
             boolean cliff = c > 2.3f ? true : false; // 2.3f because higher thresholds result in fewer stone cliffs (more grassy cliffs)
 
             for (int k = 255; k > -1; k--) {
-                Block b = primer.getBlockState(x, k, y).getBlock();
+                Block b = primer.getBlockState(x, k, z).getBlock();
                 if (b == Blocks.AIR) {
                     depth = -1;
                 }
@@ -88,29 +111,29 @@ public class RealisticBiomeAPLSmokyMountains extends RealisticBiomeAPLBase {
                         if (depth > -1 && depth < 2) {
                             if (rand.nextInt(3) == 0) {
 
-                                primer.setBlockState(x, k, y, hcCobble(world, i, j, x, y, k));
+                                primer.setBlockState(x, k, z, hcCobble(rtgWorld, i, j, x, z, k));
                             }
                             else {
 
-                                primer.setBlockState(x, k, y, hcStone(world, i, j, x, y, k));
+                                primer.setBlockState(x, k, z, hcStone(rtgWorld, i, j, x, z, k));
                             }
                         }
                         else if (depth < 10) {
-                            primer.setBlockState(x, k, y, hcStone(world, i, j, x, y, k));
+                            primer.setBlockState(x, k, z, hcStone(rtgWorld, i, j, x, z, k));
                         }
                     }
                     else {
                         if (depth == 0 && k > 61) {
                             if (simplex.noise2(i / width, j / width) > height) // > 0.27f, i / 12f
                             {
-                                primer.setBlockState(x, k, y, mixBlock);
+                                primer.setBlockState(x, k, z, mixBlock);
                             }
                             else {
-                                primer.setBlockState(x, k, y, topBlock);
+                                primer.setBlockState(x, k, z, topBlock);
                             }
                         }
                         else if (depth < 4) {
-                            primer.setBlockState(x, k, y, fillerBlock);
+                            primer.setBlockState(x, k, z, fillerBlock);
                         }
                     }
                 }
@@ -121,7 +144,7 @@ public class RealisticBiomeAPLSmokyMountains extends RealisticBiomeAPLBase {
     @Override
     public void initDecos() {
 
-        this.addDecoCollection(new DecoCollectionSmokyForest(this.getConfig().ALLOW_LOGS.get()));
+        this.addDecoCollection(new DecoCollectionSmokyMountains(this.getConfig().ALLOW_LOGS.get()));
     }
 
     public class TerrainAPLSmokyMountains extends FunctionalTerrainBase {
@@ -162,6 +185,6 @@ public class RealisticBiomeAPLSmokyMountains extends RealisticBiomeAPLBase {
 
     @Override
     public Biome beachBiome() {
-        return this.beachBiome(AppalachiaBiomes.smokyBeach);
+        return AppalachiaBiomes.smokyBeach;
     }
 }
